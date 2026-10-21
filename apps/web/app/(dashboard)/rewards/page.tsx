@@ -118,8 +118,8 @@ export default function RewardsPage() {
           <EmptyState
             size="lg"
             icon={Coins}
-            title="No rewards to claim yet"
-            body="Tournament prizes, quest payouts and jackpot shares land here as they are awarded, and settle straight to your wallet from the prize-pool contract. You have not earned any yet."
+            title="Coming Soon: Claim Rewards"
+            body="No rewards to claim yet. Tournament prizes, quest payouts and jackpot shares land here as they are awarded, and settle straight to your wallet from the prize-pool contract once on-chain reward distribution is enabled."
             action={
               <Button asChild size="sm" variant="brand">
                 <Link href="/games">Start playing</Link>

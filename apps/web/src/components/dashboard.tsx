@@ -89,11 +89,22 @@ function Panel({
   );
 }
 
-const QUICK_ACTIONS = [
+export interface QuickActionItem {
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isComingSoon?: boolean;
+}
+
+/**
+ * Route availability flags for dashboard nav.
+ * Driven from one flag per route so enabling a page later is a one-line change.
+ */
+export const QUICK_ACTIONS: QuickActionItem[] = [
   { href: "/games", label: "Play a game", icon: Gamepad2 },
-  { href: "/tournaments", label: "Tournaments", icon: Trophy },
+  { href: "/tournaments", label: "Tournaments", icon: Trophy, isComingSoon: true },
   { href: "/quests", label: "Quests", icon: Sparkles },
-  { href: "/rewards", label: "Claim rewards", icon: Gift },
+  { href: "/rewards", label: "Claim rewards", icon: Gift, isComingSoon: true },
   { href: "/verify", label: "Verify a round", icon: ShieldCheck },
   { href: "/portfolio", label: "Portfolio", icon: Wallet },
 ];
@@ -247,14 +258,25 @@ export function Dashboard() {
         </div>
 
         <div className="relative mt-5 flex flex-wrap gap-2">
-          {QUICK_ACTIONS.map(({ href, label, icon: Icon }) => (
+          {QUICK_ACTIONS.map(({ href, label, icon: Icon, isComingSoon }) => (
             <Link
               key={href}
               href={href}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              aria-disabled={isComingSoon ? "true" : undefined}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 text-xs font-medium transition-colors",
+                isComingSoon
+                  ? "opacity-85 text-muted-foreground hover:border-border cursor-pointer"
+                  : "text-muted-foreground hover:border-primary/50 hover:text-primary",
+              )}
             >
               <Icon className="size-3.5" aria-hidden />
               {label}
+              {isComingSoon ? (
+                <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                  Soon
+                </span>
+              ) : null}
             </Link>
           ))}
         </div>

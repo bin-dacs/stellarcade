@@ -74,8 +74,8 @@ export default function TournamentsPage() {
           <EmptyState
             size="lg"
             icon={Trophy}
-            title="No tournaments scheduled yet"
-            body="Brackets open once the prize-pool contract is live — entry fees escrow on-chain and payouts split automatically. Nothing is scheduled right now, so there is no pool to enter."
+            title="Coming Soon: Tournaments & Brackets"
+            body="No tournaments scheduled yet. Brackets open once the prize-pool contract is live — entry fees escrow on-chain and payouts split automatically. Competitive tournament brackets are coming soon."
             action={
               <Button asChild size="sm" variant="brand">
                 <Link href="/games">Play a game meanwhile</Link>
